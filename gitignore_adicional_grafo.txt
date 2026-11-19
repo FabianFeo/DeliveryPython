@@ -1,0 +1,4 @@
+# Añadir al .gitignore ya existente en el repositorio
+.venv-grafos/
+data/cache_osm/
+data/ubicaciones_bogota.json

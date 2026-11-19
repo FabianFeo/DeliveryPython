@@ -1,0 +1,4 @@
+# Solo para preparación externa de la red vial; NO para ejecutar CityDelivery.
+osmnx>=2.0,<3.0
+networkx>=3.3,<4.0
+geopy>=2.4,<3.0

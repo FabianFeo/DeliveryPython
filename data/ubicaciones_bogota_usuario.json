@@ -1,0 +1,55 @@
+{
+  "nota": "Completar coordenadas reales y establecer confirmado=true tras revisarlas. No se inventan ubicaciones.",
+  "origen": "CityDelivery: una única Bodega Central",
+  "ubicaciones": {
+    "BODEGA": {
+      "direccion": "Calle 6B #79C-90, Bogotá, Colombia",
+      "lat": 4.636686362,
+      "lon": -74.150325676,
+      "confirmado": true,
+      "fuente": "Mapas Bogotá - IDECA"
+    },
+    "CLI-001": {
+      "direccion": "Calle 92 # 14-20, Bogotá, Colombia",
+      "lat": null,
+      "lon": null,
+      "confirmado": false,
+      "fuente": "Pendiente de localizar y verificar"
+    },
+    "CLI-002": {
+      "direccion": "Carrera 13 # 58-40, Bogotá, Colombia",
+      "lat": null,
+      "lon": null,
+      "confirmado": false,
+      "fuente": "Pendiente de localizar y verificar"
+    },
+    "CLI-003": {
+      "direccion": "Calle 10 # 8-35, Bogotá, Colombia",
+      "lat": null,
+      "lon": null,
+      "confirmado": false,
+      "fuente": "Pendiente de localizar y verificar"
+    },
+    "CLI-004": {
+      "direccion": "Carrera 91 # 145-18, Bogotá, Colombia",
+      "lat": null,
+      "lon": null,
+      "confirmado": false,
+      "fuente": "Pendiente de localizar y verificar"
+    },
+    "CLI-005": {
+      "direccion": "Calle 6 # 70-12, Bogotá, Colombia",
+      "lat": null,
+      "lon": null,
+      "confirmado": false,
+      "fuente": "Pendiente de localizar y verificar"
+    },
+    "CLI-006": {
+      "direccion": "Carrera 7 # 32-50, Bogotá, Colombia",
+      "lat": null,
+      "lon": null,
+      "confirmado": false,
+      "fuente": "Pendiente de localizar y verificar"
+    }
+  }
+}
