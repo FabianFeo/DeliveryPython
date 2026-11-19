@@ -1,0 +1,119 @@
+{
+  "metadata": {
+    "sistema": "CityDelivery",
+    "version": "1.0",
+    "fechaOperacion": "2026-11-10",
+    "descripcion": "Datos ficticios para simular la carga de inventario y la planificación diaria de entregas."
+  },
+  "configuracion": {
+    "moneda": "COP",
+    "unidadPeso": "kg",
+    "unidadVolumen": "m3",
+    "bodega": {
+      "id": "BOD-001",
+      "nombre": "Bodega Central",
+      "direccion": "Calle 45 # 32-10, Bogotá",
+      "capacidadMaximaKg": 200000,
+      "capacidadMaximaM3": 1500.0
+    },
+    "despacho": {
+      "horaInicioMatutino": "06:00",
+      "horaFinMatutino": "12:00",
+      "criterioPrioridad": [
+        "PREMIUM",
+        "ESTANDAR"
+      ],
+      "nota": "La prioridad Premium determina el orden de salida, pero no elimina restricciones de capacidad ni circulación."
+    }
+  },
+  "zonas": [
+    {
+      "id": "Z-R",
+      "nombre": "Zona restringida",
+      "distanciaDesdeBodegaKm": 8,
+      "accesoCamionesPesados": false
+    }
+  ],
+  "clientes": [
+    {
+      "id": "VIP",
+      "nombre": "Premium",
+      "categoria": "PREMIUM",
+      "direccion": "Calle X",
+      "zonaId": "Z-R",
+      "suscripcionActiva": true
+    },
+    {
+      "id": "STD",
+      "nombre": "Estándar",
+      "categoria": "ESTANDAR",
+      "direccion": "Calle Y",
+      "zonaId": "Z-R",
+      "suscripcionActiva": false
+    }
+  ],
+  "tiposVehiculo": [
+    {
+      "tipo": "MOTOCICLETA",
+      "cantidadDisponible": 2,
+      "capacidadMaximaKg": 25,
+      "capacidadMaximaM3": 0.12,
+      "pesoMaximoPorPaqueteKg": 4.99,
+      "costoFijoPorKmCOP": 900,
+      "formulaCosto": "distanciaRecorridaKm * costoFijoPorKmCOP"
+    },
+    {
+      "tipo": "VAN",
+      "cantidadDisponible": 2,
+      "capacidadMaximaKg": 500,
+      "capacidadMaximaM3": 4.0,
+      "pesoMaximoPorPaqueteKg": null,
+      "costoPorKgKmCOP": 120,
+      "formulaCosto": "pesoTotalCargaKg * distanciaRecorridaKm * costoPorKgKmCOP"
+    },
+    {
+      "tipo": "CAMION_PESADO",
+      "cantidadDisponible": 1,
+      "capacidadMaximaKg": 1500,
+      "capacidadMaximaM3": 10.0,
+      "pesoMaximoPorPaqueteKg": null,
+      "tarifaBasePorViajeCOP": 180000,
+      "impuestoAmbientalFijoCOP": 35000,
+      "formulaCosto": "tarifaBasePorViajeCOP + impuestoAmbientalFijoCOP",
+      "restricciones": [
+        "No puede ingresar a zonas donde accesoCamionesPesados sea false."
+      ]
+    }
+  ],
+  "vehiculos": [
+    {
+      "id": "CAM-TEST",
+      "tipo": "CAMION_PESADO",
+      "disponible": true
+    }
+  ],
+  "paquetes": [
+    {
+      "codigo": "PK-VIP",
+      "pesoKg": 100,
+      "volumenM3": 1,
+      "clienteId": "VIP",
+      "estado": "PENDIENTE"
+    },
+    {
+      "codigo": "PK-STD",
+      "pesoKg": 100,
+      "volumenM3": 1,
+      "clienteId": "STD",
+      "estado": "PENDIENTE"
+    }
+  ],
+  "reglasAsignacion": {
+    "priorizarClientesPremium": true,
+    "motocicletaSoloPaquetesMenoresA5Kg": true,
+    "validarPesoYVolumenDelVehiculo": true,
+    "validarAccesoZonaParaCamionPesado": true,
+    "unPaqueteNoPuedeAsignarseAMasDeUnVehiculo": true,
+    "siNoExisteVehiculoCompatible": "mantener_pendiente_y_reportar_motivo"
+  }
+}

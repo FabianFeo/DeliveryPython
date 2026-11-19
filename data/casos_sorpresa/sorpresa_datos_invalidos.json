@@ -1,0 +1,299 @@
+{
+  "metadata": {
+    "sistema": "CityDelivery",
+    "version": "1.0",
+    "fechaOperacion": "2026-11-10",
+    "descripcion": "Datos ficticios para simular la carga de inventario y la planificación diaria de entregas."
+  },
+  "configuracion": {
+    "moneda": "COP",
+    "unidadPeso": "kg",
+    "unidadVolumen": "m3",
+    "bodega": {
+      "id": "BOD-001",
+      "nombre": "Bodega Central",
+      "direccion": "Calle 45 # 32-10, Bogotá",
+      "capacidadMaximaKg": 200000,
+      "capacidadMaximaM3": 1500.0
+    },
+    "despacho": {
+      "horaInicioMatutino": "06:00",
+      "horaFinMatutino": "12:00",
+      "criterioPrioridad": [
+        "PREMIUM",
+        "ESTANDAR"
+      ],
+      "nota": "La prioridad Premium determina el orden de salida, pero no elimina restricciones de capacidad ni circulación."
+    }
+  },
+  "zonas": [
+    {
+      "id": "Z-01",
+      "nombre": "Chapinero",
+      "distanciaDesdeBodegaKm": 8.5,
+      "accesoCamionesPesados": true
+    },
+    {
+      "id": "Z-02",
+      "nombre": "Centro",
+      "distanciaDesdeBodegaKm": 11.0,
+      "accesoCamionesPesados": true
+    },
+    {
+      "id": "Z-03",
+      "nombre": "Residencial Premium Norte",
+      "distanciaDesdeBodegaKm": 14.0,
+      "accesoCamionesPesados": false
+    },
+    {
+      "id": "Z-04",
+      "nombre": "Suba",
+      "distanciaDesdeBodegaKm": 17.5,
+      "accesoCamionesPesados": true
+    },
+    {
+      "id": "Z-05",
+      "nombre": "Residencial Premium Occidente",
+      "distanciaDesdeBodegaKm": 12.5,
+      "accesoCamionesPesados": false
+    }
+  ],
+  "clientes": [
+    {
+      "id": "CLI-001",
+      "nombre": "Laura Méndez",
+      "categoria": "PREMIUM",
+      "direccion": "Calle 92 # 14-20",
+      "zonaId": "Z-03",
+      "suscripcionActiva": true
+    },
+    {
+      "id": "CLI-002",
+      "nombre": "Andrés Rojas",
+      "categoria": "ESTANDAR",
+      "direccion": "Carrera 13 # 58-40",
+      "zonaId": "Z-01",
+      "suscripcionActiva": false
+    },
+    {
+      "id": "CLI-003",
+      "nombre": "Camila Torres",
+      "categoria": "PREMIUM",
+      "direccion": "Calle 10 # 8-35",
+      "zonaId": "Z-02",
+      "suscripcionActiva": true
+    },
+    {
+      "id": "CLI-004",
+      "nombre": "Felipe Castro",
+      "categoria": "ESTANDAR",
+      "direccion": "Carrera 91 # 145-18",
+      "zonaId": "Z-04",
+      "suscripcionActiva": false
+    },
+    {
+      "id": "CLI-005",
+      "nombre": "Natalia Gómez",
+      "categoria": "PREMIUM",
+      "direccion": "Calle 6 # 70-12",
+      "zonaId": "Z-05",
+      "suscripcionActiva": true
+    },
+    {
+      "id": "CLI-006",
+      "nombre": "Diego Herrera",
+      "categoria": "ESTANDAR",
+      "direccion": "Carrera 7 # 32-50",
+      "zonaId": "Z-02",
+      "suscripcionActiva": false
+    }
+  ],
+  "tiposVehiculo": [
+    {
+      "tipo": "MOTOCICLETA",
+      "cantidadDisponible": 2,
+      "capacidadMaximaKg": 25,
+      "capacidadMaximaM3": 0.12,
+      "pesoMaximoPorPaqueteKg": 4.99,
+      "costoFijoPorKmCOP": 900,
+      "formulaCosto": "distanciaRecorridaKm * costoFijoPorKmCOP"
+    },
+    {
+      "tipo": "VAN",
+      "cantidadDisponible": 2,
+      "capacidadMaximaKg": 500,
+      "capacidadMaximaM3": 4.0,
+      "pesoMaximoPorPaqueteKg": null,
+      "costoPorKgKmCOP": 120,
+      "formulaCosto": "pesoTotalCargaKg * distanciaRecorridaKm * costoPorKgKmCOP"
+    },
+    {
+      "tipo": "CAMION_PESADO",
+      "cantidadDisponible": 1,
+      "capacidadMaximaKg": 1500,
+      "capacidadMaximaM3": 10.0,
+      "pesoMaximoPorPaqueteKg": null,
+      "tarifaBasePorViajeCOP": 180000,
+      "impuestoAmbientalFijoCOP": 35000,
+      "formulaCosto": "tarifaBasePorViajeCOP + impuestoAmbientalFijoCOP",
+      "restricciones": [
+        "No puede ingresar a zonas donde accesoCamionesPesados sea false."
+      ]
+    }
+  ],
+  "vehiculos": [
+    {
+      "id": "MOTO-01",
+      "tipo": "MOTOCICLETA",
+      "disponible": true
+    },
+    {
+      "id": "MOTO-02",
+      "tipo": "MOTOCICLETA",
+      "disponible": true
+    },
+    {
+      "id": "VAN-01",
+      "tipo": "VAN",
+      "disponible": true
+    },
+    {
+      "id": "VAN-02",
+      "tipo": "VAN",
+      "disponible": true
+    },
+    {
+      "id": "CAM-01",
+      "tipo": "CAMION_PESADO",
+      "disponible": true
+    }
+  ],
+  "paquetes": [
+    {
+      "codigo": "PK-001",
+      "pesoKg": 2.0,
+      "volumenM3": 0.015,
+      "clienteId": "CLI-001",
+      "estado": "PENDIENTE"
+    },
+    {
+      "codigo": "PK-002",
+      "pesoKg": 8.0,
+      "volumenM3": 0.04,
+      "clienteId": "CLI-002",
+      "estado": "PENDIENTE"
+    },
+    {
+      "codigo": "PK-003",
+      "pesoKg": 1.5,
+      "volumenM3": 0.01,
+      "clienteId": "CLI-003",
+      "estado": "PENDIENTE"
+    },
+    {
+      "codigo": "PK-004",
+      "pesoKg": 35.0,
+      "volumenM3": 0.3,
+      "clienteId": "CLI-004",
+      "estado": "PENDIENTE"
+    },
+    {
+      "codigo": "PK-005",
+      "pesoKg": 4.0,
+      "volumenM3": 0.025,
+      "clienteId": "CLI-005",
+      "estado": "PENDIENTE"
+    },
+    {
+      "codigo": "PK-006",
+      "pesoKg": 120.0,
+      "volumenM3": 1.2,
+      "clienteId": "CLI-006",
+      "estado": "PENDIENTE"
+    },
+    {
+      "codigo": "PK-007",
+      "pesoKg": 3.2,
+      "volumenM3": 0.02,
+      "clienteId": "CLI-002",
+      "estado": "PENDIENTE"
+    },
+    {
+      "codigo": "PK-008",
+      "pesoKg": 420.0,
+      "volumenM3": 3.5,
+      "clienteId": "CLI-004",
+      "estado": "PENDIENTE"
+    },
+    {
+      "codigo": "PK-009",
+      "pesoKg": 650.0,
+      "volumenM3": 5.0,
+      "clienteId": "CLI-006",
+      "estado": "PENDIENTE"
+    },
+    {
+      "codigo": "PK-010",
+      "pesoKg": 5.2,
+      "volumenM3": 0.045,
+      "clienteId": "CLI-001",
+      "estado": "PENDIENTE"
+    },
+    {
+      "codigo": "PK-011",
+      "pesoKg": 12.0,
+      "volumenM3": 0.08,
+      "clienteId": "CLI-003",
+      "estado": "PENDIENTE"
+    },
+    {
+      "codigo": "PK-012",
+      "pesoKg": 280.0,
+      "volumenM3": 2.0,
+      "clienteId": "CLI-005",
+      "estado": "PENDIENTE"
+    },
+    {
+      "codigo": "PK-013",
+      "pesoKg": 90.0,
+      "volumenM3": 0.75,
+      "clienteId": "CLI-002",
+      "estado": "PENDIENTE"
+    },
+    {
+      "codigo": "PK-014",
+      "pesoKg": 700.0,
+      "volumenM3": 5.5,
+      "clienteId": "CLI-004",
+      "estado": "PENDIENTE"
+    },
+    {
+      "codigo": "PK-015",
+      "pesoKg": 2.5,
+      "volumenM3": 0.018,
+      "clienteId": "CLI-005",
+      "estado": "PENDIENTE"
+    },
+    {
+      "codigo": "PK-001",
+      "pesoKg": 2.0,
+      "volumenM3": 0.015,
+      "clienteId": "CLI-001",
+      "estado": "PENDIENTE"
+    },
+    {
+      "codigo": "PK-DESCONOCIDO",
+      "pesoKg": 1,
+      "volumenM3": 0.01,
+      "clienteId": "NO-EXISTE"
+    }
+  ],
+  "reglasAsignacion": {
+    "priorizarClientesPremium": true,
+    "motocicletaSoloPaquetesMenoresA5Kg": true,
+    "validarPesoYVolumenDelVehiculo": true,
+    "validarAccesoZonaParaCamionPesado": true,
+    "unPaqueteNoPuedeAsignarseAMasDeUnVehiculo": true,
+    "siNoExisteVehiculoCompatible": "mantener_pendiente_y_reportar_motivo"
+  }
+}
